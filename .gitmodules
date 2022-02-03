@@ -1,0 +1,3 @@
+[submodule "demystifying-graphql"]
+	path = demystifying-graphql
+	url = git@github.com:odjhey/demystifying-graphql.git
