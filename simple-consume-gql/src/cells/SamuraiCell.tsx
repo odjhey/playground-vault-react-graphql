@@ -1,3 +1,5 @@
+import { withCell } from "./withCell";
+
 export const QUERY = `
   query MyQuery($limit: Int = 3, $offset: Int = 0) {
     samuraiList(pageParams: { limit: $limit, offset: $offset }) {
@@ -20,3 +22,5 @@ export const Error = (e: any) => (
 export const Success = ({ samuraiList }: any) => {
   return <pre>{JSON.stringify(samuraiList, null, 2)}</pre>;
 };
+
+export default withCell({ QUERY, Loading, Error, Success });
