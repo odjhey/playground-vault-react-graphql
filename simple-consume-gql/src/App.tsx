@@ -1,33 +1,25 @@
-import { useEffect, useState } from "react";
-import { customFetch } from "./utils/customFetch";
+import { useQuery } from "./hooks/useQuery";
 
-function App() {
-  const [data, setData] = useState<any>();
-
-  useEffect(() => {
-    customFetch(
-      `
+const QUERY = `
         query {
           samuraiList {
             id
-            name
+            nameasdf
             nickname
             age
           }
         }
-      `,
-      {}
-    )
-      .then((d) => {
-        setData(d);
-      })
-      .catch((e) => console.error(e));
-  }, []);
+      `;
+
+function App() {
+  const { loading, data, error } = useQuery(QUERY, {});
 
   return (
     <div className="App">
       <h1>hello world</h1>
+      <h3>{loading ? "loading" : null}</h3>
       <pre>{JSON.stringify(data, null, 2)}</pre>
+      <pre>{JSON.stringify(error, null, 2)}</pre>
     </div>
   );
 }
