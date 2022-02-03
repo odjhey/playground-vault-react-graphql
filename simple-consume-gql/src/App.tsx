@@ -1,18 +1,18 @@
 import { useQuery } from "./hooks/useQuery";
 
 const QUERY = `
-        query {
-          samuraiList {
-            id
-            nameasdf
-            nickname
-            age
-          }
-        }
-      `;
+  query MyQuery($limit: Int = 3, $offset: Int = 0) {
+    samuraiList(pageParams: { limit: $limit, offset: $offset }) {
+      id
+      name
+      nickname
+      age
+    }
+  }
+`;
 
 function App() {
-  const { loading, data, error } = useQuery(QUERY, {});
+  const { loading, data, error } = useQuery(QUERY, { limit: 4, offset: 0 });
 
   return (
     <div className="App">
