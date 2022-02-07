@@ -1,4 +1,5 @@
 import SamuraiCell from "./cells/SamuraiCell";
+import LongSamuraiCell from "./cells/LongSamuraiCell";
 
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <h1>hello world</h1>
 
       <SamuraiCell />
+      <LongSamuraiCell />
     </div>
   );
 }

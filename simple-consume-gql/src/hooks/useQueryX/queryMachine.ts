@@ -18,6 +18,9 @@ export const queryMachine = createMachine({
   context: DEFAULT_CONTEXT,
   states: {
     loading: {
+      on: {
+        CANCEL: "cancelled",
+      },
       invoke: {
         id: "fetch",
         src: (context: TCONTEXT, event) =>
@@ -40,6 +43,11 @@ export const queryMachine = createMachine({
     done: {
       on: {
         REFRESH: "loading",
+      },
+    },
+    cancelled: {
+      on: {
+        RETRY: "loading",
       },
     },
     error: {
