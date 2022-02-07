@@ -1,11 +1,13 @@
-import Cell from "./cells/SamuraiCell";
+import SamuraiCell from "./cells/SamuraiCell";
+import LongSamuraiCell from "./cells/LongSamuraiCell";
 
 function App() {
   return (
     <div className="App">
       <h1>hello world</h1>
 
-      <Cell />
+      <SamuraiCell />
+      <LongSamuraiCell />
     </div>
   );
 }
