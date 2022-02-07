@@ -1,7 +1,6 @@
-import { customFetch } from "../utils/customFetch";
+import { customFetch } from "../../utils/customFetch";
 
 import { createMachine, EventObject } from "xstate";
-import { useMachine } from "@xstate/react";
 import { assign } from "@xstate/immer";
 
 const DEFAULT_CONTEXT = {
@@ -13,7 +12,7 @@ const DEFAULT_CONTEXT = {
 
 type TCONTEXT = typeof DEFAULT_CONTEXT;
 
-const queryMachine = createMachine({
+export const queryMachine = createMachine({
   id: "with-query",
   initial: "loading",
   context: DEFAULT_CONTEXT,
@@ -50,17 +49,3 @@ const queryMachine = createMachine({
     },
   },
 });
-
-export const useQueryX = (query: string, variables: any) => {
-  const [state, send] = useMachine(queryMachine, {
-    context: { query, variables },
-  });
-
-  return {
-    loading: state.matches("loading"),
-    data: state.context.data.data,
-    error: state.context.error,
-    retry: () => send("RETRY"),
-    refresh: () => send("REFRESH"),
-  };
-};
