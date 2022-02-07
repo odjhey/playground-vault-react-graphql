@@ -1,4 +1,4 @@
-import { withCell } from "./withCell";
+import { withCellX } from "./withCellX";
 
 export const QUERY = `
   query MyQuery($limit: Int = 3, $offset: Int = 0) {
@@ -12,15 +12,21 @@ export const QUERY = `
 `;
 
 export const Loading = () => <p>...Loading</p>;
-export const Error = (e: any) => (
+export const Error = ({ error, retryFn }: any) => (
   <div>
     <h4>Error</h4>
-    <pre>{JSON.stringify(e, null, 2)}</pre>
+    <pre>{JSON.stringify(error, null, 2)}</pre>
+    <button onClick={retryFn}>retry</button>
   </div>
 );
 
-export const Success = ({ samuraiList }: any) => {
-  return <pre>{JSON.stringify(samuraiList, null, 2)}</pre>;
+export const Success = ({ samuraiList, refreshFn }: any) => {
+  return (
+    <>
+      <pre>{JSON.stringify(samuraiList, null, 2)}</pre>
+      <button onClick={refreshFn}>refresh</button>
+    </>
+  );
 };
 
-export default withCell({ QUERY, Loading, Error, Success });
+export default withCellX({ QUERY, Loading, Error, Success });
